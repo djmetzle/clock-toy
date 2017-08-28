@@ -146,8 +146,12 @@ function resize_to_window() {
 
 	boxWidth -= 50.0;
 
-	ctx.canvas.width  = window.boxWidth
-	ctx.canvas.height = window.boxWidth;
+	ctx.canvas.style.width = window.boxWidth + 'px';
+	ctx.canvas.style.height = window.boxWidth + 'px';
+
+	ctx.canvas.width  = window.boxWidth * window.devicePixelRatio; 
+	ctx.canvas.height = window.boxWidth * window.devicePixelRatio;
+	boxWidth *= window.devicePixelRatio;
 
 	scale_constants();
 }
