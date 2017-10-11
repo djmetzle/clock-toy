@@ -1,9 +1,9 @@
 // Clock Object
 
 //
-var HOUR_RAD = Math.PI / 6.0;
-var MINUTE_RAD = Math.PI / 30.0;
-var SECOND_RAD = Math.PI / 30.0;
+const HOUR_RAD = Math.PI / 6.0;
+const MINUTE_RAD = Math.PI / 30.0;
+const SECOND_RAD = Math.PI / 30.0;
 
 function Clock() {
 	this.updateTime();
