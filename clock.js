@@ -77,28 +77,28 @@ function draw_hand(x,y,thickness, color) {
 	ctx.stroke();		
 }
 
-function draw_hands(hour,min,sec) {
-	drawHour(hour);
-	drawMinute(min);
-	drawSecond(sec);
+function draw_hands(clock) {
+	drawHour(clock);
+	drawMinute(clock);
+	drawSecond(clock);
 }
 
-function drawHour(hour) {
-	var hourAngle = hour * hourRad - Math.PI / 2.0;
+function drawHour(clock) {
+	var hourAngle = clock.hourAngle - Math.PI / 2.0;
 	var x = centerPos + hourHandRadius * Math.cos(hourAngle);
 	var y = centerPos + hourHandRadius * Math.sin(hourAngle);
 	draw_hand(x,y,hourHandWidth, hourHandColor);
 }
 
-function drawMinute(minute) {
-	var minuteAngle = minute * minuteRad - Math.PI / 2.0;
+function drawMinute(clock) {
+	var minuteAngle = clock.minuteAngle - Math.PI / 2.0;
 	var x = centerPos + minuteHandRadius * Math.cos(minuteAngle);
 	var y = centerPos + minuteHandRadius * Math.sin(minuteAngle);
 	draw_hand(x,y,minuteHandWidth, minuteHandColor);
 }
 
-function drawSecond(second) {
-	var secondAngle = second * secondRad - Math.PI / 2.0;
+function drawSecond(clock) {
+	var secondAngle = clock.secondAngle - Math.PI / 2.0;
 	var x = centerPos + secondHandRadius * Math.cos(secondAngle);
 	var y = centerPos + secondHandRadius * Math.sin(secondAngle);
 	draw_hand(x,y,secondHandWidth, secondHandColor);
@@ -112,19 +112,13 @@ function drawCurrent() {
 
 	draw_face();
 
-	date = new Date();
-	var timeStr = date.toString();
+	var clock = new Clock();
+
+	var timeStr = clock.time.toString();
 	draw_time_string(timeStr);
 
-	var hour = date.getHours() % 12;
-	var minute = date.getMinutes();
-	var second = date.getSeconds();
 
-	var hourFrac = minute / 60.0;
-	var minuteFrac = second / 60.0;
-	var secFrac = date.getMilliseconds() / 1000.0;
-
-	draw_hands(hour+hourFrac,minute+minuteFrac,second+secFrac);
+	draw_hands(clock);
 
 	window.requestAnimationFrame(drawCurrent);
 }
