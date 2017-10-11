@@ -27,7 +27,7 @@ Clock.prototype.extractTime = function() {
 
 Clock.prototype.recalculateAngles = function() {
 	var hourFrac = this.minute / 60.0;
-	var mintueFrac = this.second / 60.0;
+	var minuteFrac = this.second / 60.0;
 	var secFrac = this.millisec / 1000.0;
 
 	this.hourAngle = (this.hour + hourFrac) * HOUR_RAD;
