@@ -4,6 +4,8 @@ var HOUR_HAND_COLOR = "#000000";
 var MINUTE_HAND_COLOR = "#000000";
 var SECOND_HAND_COLOR = "#FF0000";
 
+const NUMERAL_ANGLE = Math.PI / 6.0;
+
 function ClockFace(draw_ctx) {
 	this.ctx = draw_ctx;
 }
@@ -24,6 +26,8 @@ ClockFace.prototype.scaleConsts = function() {
 	this.faceRadius = this.centerPos*0.85;
 	this.edgeRadius = this.centerPos*0.90;
 	this.faceWidth = this.centerPos*0.01;
+
+	this.numeralRadius = this.centerPos * 0.75; 
 
 	this.hourRadius = this.centerPos * 0.45;
 	this.minuteRadius = this.centerPos * 0.6;
@@ -56,11 +60,32 @@ ClockFace.prototype.drawFace = function() {
 	this.ctx.arc(this.centerPos,this.centerPos,this.edgeRadius, 0, 2.0*Math.PI, false);
 	this.ctx.stroke();
 
-	this.ctx.fillStyle='#777';
+	this.ctx.fillStyle='#333';
 	this.ctx.beginPath();
 	this.ctx.arc(this.centerPos,this.centerPos,this.faceWidth * 2.0, 0, 2.0*Math.PI, false);
 	this.ctx.fill();
+
+	this.drawNumerals();
 }
+
+ClockFace.prototype.drawNumerals = function() {
+	fontSize = this.centerPos / 10.0;
+	this.ctx.lineWidth=2.0;
+	this.ctx.strokeStyle="#000000";
+	this.ctx.font = fontSize + 'px serif';
+	this.ctx.textAlign = 'center';
+
+	for (var i=1; i <= 12; i++) {
+		// rotate PI/4 counterclockwise
+		var angle = i * NUMERAL_ANGLE - Math.PI / 2.0;
+		var x = this.centerPos + this.numeralRadius * Math.cos(angle);
+		var y = this.centerPos + this.numeralRadius * Math.sin(angle);
+		// baseline fix
+		y += fontSize / 4.0;
+		this.ctx.fillText(i, x,y);
+	}
+}
+
 
 ClockFace.prototype.drawHands = function(clock) {
 	this.drawHourHand(clock);

@@ -15,23 +15,6 @@ var minuteRad = Math.PI / 30.0;
 var secondRad = Math.PI / 30.0;
 var centerPos = 300;
 
-function draw_numerals() {
-	ctx.lineWidth=2.0;
-	ctx.strokeStyle="#000000";
-	ctx.font = '32px serif';
-	ctx.textAlign = 'center';
-
-	for (var i=1; i <= 12; i++) {
-		// rotate PI/4 counterclockwise
-		var angle = i * hourRad - Math.PI / 2.0;
-		var x = centerPos + textRadius * Math.cos(angle);
-		var y = centerPos + textRadius * Math.sin(angle);
-		// baseline fix
-		y += 8;
-		ctx.fillText(i, x,y);
-	}
-}
-
 function drawCurrent() {
 	resize_to_window();
 
