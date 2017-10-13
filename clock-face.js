@@ -38,7 +38,7 @@ ClockFace.prototype.scaleConsts = function() {
 	this.secondWidth = this.centerPos*0.008;
 
 	this.ctx.shadowColor = '#111';
-	this.ctx.shadowBlur = 10;
+	this.ctx.shadowBlur = this.centerPos * 0.025;
 	this.ctx.shadowOffsetX = this.faceWidth;
 	this.ctx.shadowOffsetY = this.faceWidth;
 }
@@ -47,9 +47,7 @@ ClockFace.prototype.drawFace = function() {
 	this.ctx.lineWidth=this.faceWidth;
 	this.ctx.strokeStyle="#000";
 	this.ctx.shadowColor = '#111';
-	this.ctx.shadowBlur = 10;
-	this.ctx.shadowOffsetX = this.faceWidth;
-	this.ctx.shadowOffsetY = this.faceWidth;
+	this.ctx.shadowBlur = this.centerPos * 0.025;
 	this.ctx.beginPath();
 	this.ctx.arc(this.centerPos,this.centerPos,this.faceRadius, 0, 2.0*Math.PI, false);
 	this.ctx.stroke();
@@ -72,6 +70,8 @@ ClockFace.prototype.drawNumerals = function() {
 	fontSize = this.centerPos / 10.0;
 	this.ctx.lineWidth=2.0;
 	this.ctx.strokeStyle="#000000";
+	this.ctx.shadowOffsetX = this.faceWidth / 2.0;
+	this.ctx.shadowOffsetY = this.faceWidth / 2.0;
 	this.ctx.font = fontSize + 'px serif';
 	this.ctx.textAlign = 'center';
 
@@ -84,6 +84,8 @@ ClockFace.prototype.drawNumerals = function() {
 		y += fontSize / 4.0;
 		this.ctx.fillText(i, x,y);
 	}
+	this.ctx.shadowOffsetX = this.faceWidth;
+	this.ctx.shadowOffsetY = this.faceWidth;
 }
 
 
