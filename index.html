@@ -2,15 +2,23 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>JS Fun!</title>
+      <style>
+      body {
+         width: 580px;
+         height: 580px;
+         background-color: white;
+         overflow: hidden;
+      }
+      </style>
+	</head>
+
+   <body>
+		<center>
+		<canvas id="clock_widget" width="560" height="560">A Simple Clock Widget</canvas>
+		</center>
 		<script src="clock-object.js"></script>
 		<script src="clock-face.js"></script>
 		<script src="clock.js"></script>
-	</head>
-
-	<body onload="clock_init();">
-		<center>
-		<canvas id="clock_widget" width="600" height="600">A Simple Clock Widget</canvas>
-		</center>
-
+      <script>clock_init();</script>
 	</body>
 </html>

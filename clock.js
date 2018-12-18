@@ -45,7 +45,7 @@ function resize_to_window() {
 	boxWidth = windowWidth > windowHieght
 			? windowHieght : windowWidth;
 
-	boxWidth -= 50.0;
+	boxWidth *= 0.95;
 
 	ctx.canvas.style.width = window.boxWidth + 'px';
 	ctx.canvas.style.height = window.boxWidth + 'px';
@@ -65,3 +65,5 @@ function clock_init() {
 
 	window.requestAnimationFrame(drawCurrent);
 }
+
+clock_init()
